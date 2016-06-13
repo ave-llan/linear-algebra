@@ -1,3 +1,5 @@
+import math
+
 class Vector(object):
     def __init__(self, coordinates):
         try:
@@ -35,5 +37,11 @@ class Vector(object):
         if x.dimension != self.dimension:
             raise ValueError('The vectors must have equal dimensinos')
 
+    def magnitude(self):
+        return math.sqrt(reduce(
+            lambda sumSquared, coordinate: sumSquared + coordinate ** 2,
+            self.coordinates, 0))
 
+    def direction(self):
+        return self * (1.0 / self.magnitude())
 
