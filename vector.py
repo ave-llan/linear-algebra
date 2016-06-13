@@ -42,6 +42,11 @@ class Vector(object):
             lambda sumSquared, coordinate: sumSquared + coordinate ** 2,
             self.coordinates, 0))
 
-    def direction(self):
-        return self * (1.0 / self.magnitude())
+    def normalized(self):
+        try:
+            return self * (1.0 / self.magnitude())
+
+        except ZeroDivisionError:
+            raise Exception('Cannot normalize the zero vector')
+        
 
