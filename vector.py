@@ -61,3 +61,14 @@ class Vector(object):
 
         except ZeroDivisionError:
             raise Exception('Cannot normalize the zero vector')
+
+    def dot(self, x):
+        """Calculate the dot product (inner product) between self and x."""
+        self._validate_dimension(x)
+        return sum((a * b for (a, b) in zip(self.coordinates, x.coordinates)))
+
+    def angle_with(self, x, in_degrees=False):
+        """Return the angle between self and x in radians or degrees."""
+        self._validate_dimension(x)
+        angle_radians = math.acos(self.normalized().dot(x.normalized()))
+        return angle_radians if not in_degrees else math.degrees(angle_radians)
