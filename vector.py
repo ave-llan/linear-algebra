@@ -32,16 +32,16 @@ class Vector(object):
     def __add__(self, x):
         """Add two vectors."""
         self._validate_dimension(x)
-        return map(lambda a, b: a + b, self.coordinates, x.coordinates)
+        return Vector(map(lambda a, b: a + b, self.coordinates, x.coordinates))
 
     def __sub__(self, x):
         """Subtract two vectors."""
         self._validate_dimension(x)
-        return map(lambda a, b: a - b, self.coordinates, x.coordinates)
+        return Vector(map(lambda a, b: a - b, self.coordinates, x.coordinates))
 
     def __mul__(self, scalar_int):
         """Multiply a vector by a scalar."""
-        return map(lambda a: a * scalar_int, self.coordinates)
+        return Vector(map(lambda a: a * scalar_int, self.coordinates))
 
     def _validate_dimension(self, x):
         """Check that another vector has the same dimensions as this."""
